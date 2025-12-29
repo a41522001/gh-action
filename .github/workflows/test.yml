@@ -15,6 +15,7 @@ jobs:
       - name: 跑測試
         run: npm run test:unit
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: 抓取程式碼
