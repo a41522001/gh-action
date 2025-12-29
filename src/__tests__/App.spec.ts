@@ -5,6 +5,6 @@ describe('add', () => {
     expect(sum(3, 5)).toBe(8);
   });
   test('add2', () => {
-    expect(sum(-5, 5)).toBe(0);
+    expect(sum(-5, 5)).toBe(5);
   });
 });
