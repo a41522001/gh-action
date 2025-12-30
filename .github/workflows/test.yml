@@ -1,7 +1,11 @@
 name: Test Workflow
-on: [push, workflow_dispatch]
+on:
+  pull_request:
+    types:
+      - opened
+  workflow_dispatch:
 jobs:
-  test:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: 抓取程式碼
@@ -14,19 +18,5 @@ jobs:
         run: npm ci
       - name: 跑測試
         run: npm run test:unit
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: 抓取程式碼
-        uses: actions/checkout@v6
-      - name: 安裝Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-      - name: 安裝依賴
-        run: npm ci
-      - name: build
-        run: npm run build
-      - name: deploy
+      - name: 模擬佈署
         run: echo "Deploy!"
